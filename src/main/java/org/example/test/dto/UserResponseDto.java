@@ -15,7 +15,7 @@ public class UserResponseDto {
 
     @Builder
     public UserResponseDto(User user) {
-        this.id = user.getId();
+        this.id = user.getUser_id();
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.createdDate = user.getCreatedAt();
