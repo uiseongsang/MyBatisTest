@@ -31,6 +31,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'com.h2database:h2'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.2'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
 }
 
 tasks.named('test') {
