@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+// TODO: DisplayName 변경
 public class UserControllerTest extends BaseControllerTest {
     @Test
     @DisplayName("유저 저장(성공) - /user")
@@ -36,6 +37,7 @@ public class UserControllerTest extends BaseControllerTest {
                 .andExpect(jsonPath("email").value("thomas.sang@gmail.com"));
     }
 
+    // TODO: 테스트 실패
     @Test
     @DisplayName("유저 저장(실패) - 잘못된 Body")
     public void postUserFailByWrongBody() throws Exception {
