@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.test.common.Timestamped;
+import org.example.test.dto.BoardResponseDto;
 import org.example.test.dto.UserRequestDto;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -41,8 +42,9 @@ public class User extends Timestamped {
     /**
      * 연관관계 - Foreign Key 값을 따로 컬럼으로 정의하지 않고 연관 관계로 정의합니다.
      */
-    @OneToMany
-    @JoinColumn(name = "board_id")
+//    @OneToMany
+//    @JoinColumn(name = "board_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
 
     /**
