@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .header button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .user-container {
+            margin-top: 20px;
+        }
+
+        .user-button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .board-container {
+            margin-top: 20px;
+        }
+
+        .board-info {
+            background-color: #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <button id="callUser">불러오기</button>
+</div>
+
+<div class="user-container" id="userContainer"></div>
+<div class="board-container" id="boardContainer"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).on("click", "#callUser", function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: `/users`,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (response) {
+                console.log('성공');
+                console.log(response);
+
+                // Clear the userContainer before appending new content
+                $('#userContainer').empty();
+
+                let temp_html = ``;
+
+                // Iterate over each user and display their information
+                response.userList.forEach(function (user) {
+                    let userInfoHtml = `
+                        <p>
+                            <button class="user-button" id="infoBtn" onClick="reply_click(${user.user_id})">${user.username}(${user.email})</button>
+                        </p>
+                    `;
+                    temp_html += userInfoHtml;
+                });
+
+                // Append the user information to the userContainer
+                $('#userContainer').append(temp_html);
+            },
+            error: function () {
+                console.log('error 실패');
+            }
+        });
+    });
+
+
+    //$(document).on("click", "#infoBtn", function (event) {
+    function reply_click(userId) {
+        $.ajax({
+            url: `/board/userId/${userId}`,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (response) {
+                console.log('성공');
+                console.log(response);
+
+                // Clear the boardContainer before appending new content
+                $('#boardContainer').empty();
+
+                let temp_html = ``;
+
+                //Iterate over each user and display their information
+                response.boardList.forEach(function (board) {
+                    let boardInfoHtml = `
+                        <p class="board-info"> ${board.title} / ${board.content} / ${board.createdAt}</p>
+                    `;
+                    temp_html += boardInfoHtml;
+                });
+
+                // Append the user information to the userContainer
+                $('#boardContainer').append(temp_html);
+            },
+            error: function () {
+                console.log('error 실패');
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
