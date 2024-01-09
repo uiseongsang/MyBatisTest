@@ -1,27 +1,18 @@
 package org.example.test.entity;
 
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.test.common.Timestamped;
 
-@Entity
 @Getter
-@Table(name = "board")
 @NoArgsConstructor
 public class Board extends Timestamped {
     /**
      * 컬럼 - 연관관계 컬럼을 제외한 컬럼을 정의합니다.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long board_id;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column(nullable = false)
     private String content;
 
     /**
@@ -36,8 +27,6 @@ public class Board extends Timestamped {
     /**
      * 연관관계 - Foreign Key 값을 따로 컬럼으로 정의하지 않고 연관 관계로 정의합니다.
      */
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     /**
