@@ -37,9 +37,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
-//    @GetMapping("boards/userId/{userId}")
-//    public BoardListResponseDto selectUserBoards(@PathVariable Long userId) {
-//        return userService.selectUserBoards(userId);
-//    }
+    @GetMapping("boards/userId/{userId}")
+    public BoardListResponseDto selectUserBoards(@PathVariable Long userId) {
+        return userService.selectUserBoards(userId);
+    }
 
 }

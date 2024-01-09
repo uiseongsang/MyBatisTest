@@ -43,18 +43,6 @@ public class UserService {
         return new UserListResponseDto(userList);
     }
 
-
-    // TODO: Test Code
-//    @Transactional
-//    public BoardListResponseDto selectUserBoards(Long userId) {
-//        List<BoardResponseDto> boardResponseDtoList = userRepository.getUserMapper().findBoardsByUserId(userId).stream()
-//                .map(BoardResponseDto::new)
-//                .collect(Collectors.toList());
-//
-//        return new BoardListResponseDto(boardResponseDtoList);
-//    }
-
-
     public BoardResponseDto addUserBoard(BoardRequestDto requestDto) {
         Board board = BoardRequestDto.toEntity(requestDto);
 
@@ -62,6 +50,16 @@ public class UserService {
         boardRepository.getBoardMapper().insertBoard(board);
 
         return new BoardResponseDto(board);
+    }
+
+    // TODO: Test Code
+    @Transactional
+    public BoardListResponseDto selectUserBoards(Long userId) {
+        List<BoardResponseDto> boardResponseDtoList = userRepository.getUserMapper().findBoardsByUserId(userId).stream()
+                .map(BoardResponseDto::new)
+                .collect(Collectors.toList());
+
+        return new BoardListResponseDto(boardResponseDtoList);
     }
 }
 

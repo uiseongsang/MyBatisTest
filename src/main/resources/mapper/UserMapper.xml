@@ -39,13 +39,13 @@
         SELECT * FROM member Order By createdAt DESC
     </select>
 
-<!--    <select id="findBoardsByUserId" parameterType="user_id" resultType="org.example.test.entity.Board">-->
-<!--        SELECT board.*-->
-<!--        FROM board-->
-<!--                 JOIN member ON board.user_id = member.user_id-->
-<!--        WHERE member.user_id = #{user_id}-->
-<!--        ORDER BY board.createdAt DESC;-->
-<!--    </select>-->
+    <select id="findBoardsByUserId" parameterType="Long" resultType="org.example.test.entity.Board">
+        SELECT board.*
+        FROM board
+                 JOIN member ON board.user_id = member.user_id
+        WHERE member.user_id = #{user_id}
+        ORDER BY board.createdAt DESC;
+    </select>
 
     <insert id="insertUser" parameterType="org.example.test.entity.User">
         INSERT INTO member (username, email, <include refid="timestampedColumns"/>)
