@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.test.mapper.BoardMapper">
+    <insert id="insertBoard" parameterType="org.example.test.entity.Board">
+        INSERT INTO board(title, content, <include refid="timestampedColumns"/>)
+        VALUES (#{title}, #{content}, <include refid="timestampedValues"/>)
+    </insert>
+
+    <sql id="timestampedColumns">
+        createdAt
+        <!-- , modified_at -->
+    </sql>
+
+    <sql id="timestampedValues">
+        #{createdAt, jdbcType=TIMESTAMP}
+        <!-- , #{modifiedAt, jdbcType=TIMESTAMP} -->
+    </sql>
+</mapper>
+

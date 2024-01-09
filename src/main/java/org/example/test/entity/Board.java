@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor
 public class Board {
@@ -13,6 +15,7 @@ public class Board {
     private Long board_id;
     private String title;
     private String content;
+    private LocalDateTime createdAt;
 
     /**
      * 생성자 - 약속된 형태로만 생성가능하도록 합니다.
@@ -21,6 +24,7 @@ public class Board {
     public Board(String title, String content) {
         this.title = title;
         this.content = content;
+        this.createdAt = LocalDateTime.now();
     }
 
     /**

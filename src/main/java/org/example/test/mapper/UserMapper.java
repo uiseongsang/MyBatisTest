@@ -1,8 +1,7 @@
 package org.example.test.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.example.test.entity.Board;
 import org.example.test.entity.User;
 
 import java.util.List;
@@ -12,5 +11,5 @@ public interface UserMapper {
     List<User> findAllByOrderByCreatedAtDesc();
 //    Boolean existsAllByEmail(String email);
     void insertUser(User user);
-
+    User findById(Long id);
 }

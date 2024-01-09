@@ -3,11 +3,11 @@ package org.example.test.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.test.dto.*;
+import org.example.test.entity.Board;
 import org.example.test.entity.User;
-import org.example.test.mapper.UserMapper;
+import org.example.test.mapper.BoardMapper;
+import org.example.test.repository.BoardRepository;
 import org.example.test.repository.UserRepository;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
+    private final BoardRepository boardRepository;
     private final UserRepository userRepository;
 
     public UserListResponseDto selectUsers() {
@@ -42,6 +43,19 @@ public class UserService {
 
         return new UserResponseDto(user);
     }
+
+
+    // TODO: Test Code
+    @Transactional
+    public BoardResponseDto addUserBoard(BoardRequestDto requestDto, Long userId) {
+        User user = userRepository.getUserMapper().findById(userId);
+        Board board = BoardRequestDto.toEntity(requestDto);
+
+        boardRepository.getBoardMapper().insertBoard(board);
+        board.addBoardList(user);
+
+        return new BoardResponseDto(board);
+    }
 }
 
 
@@ -49,19 +63,6 @@ public class UserService {
 
 
 
-//
-//    // TODO: Test Code
-//    @Transactional
-//    public BoardResponseDto addUserBoard(BoardRequestDto requestDto, Long userId) {
-//        User user = userRepository.findById(userId).orElseThrow();
-//        Board board = BoardRequestDto.toEntity(requestDto);
-//
-//        // Fixed: BoardRepository를 만들어야 한다! Entity랑 Repository는 세트라고 생각해야한다!
-//        boardRepository.save(board);
-//        board.addBoardList(user);
-//
-//        return new BoardResponseDto(board);
-//    }
 //
 //    // TODO: Test Code
 //    @Transactional

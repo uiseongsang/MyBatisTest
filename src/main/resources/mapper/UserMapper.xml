@@ -15,10 +15,15 @@
         SELECT * FROM member Order By createdAt DESC
     </select>
 
+    <select id="findById" parameterType="Long" resultType="org.example.test.entity.User">
+        SELECT * FROM member WHERE id = #{id}
+    </select>
+
     <insert id="insertUser" parameterType="org.example.test.entity.User">
         INSERT INTO member (username, email, <include refid="timestampedColumns"/>)
         VALUES (#{username}, #{email}, <include refid="timestampedValues"/>)
     </insert>
+
 
     <!-- ... 나머지 코드 ... -->
 
