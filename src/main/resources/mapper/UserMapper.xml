@@ -18,7 +18,8 @@
 <!--    </select>-->
 
     <insert id="insertUser" parameterType="org.example.test.entity.User">
-            INSERT INTO member (username, email, <include refid="timestampedColumns"/>) VALUES (#{username}, #{email}, <include refid="timestampedValues"/>)
+            INSERT INTO member (username, email, <include refid="timestampedColumns"/>)
+            VALUES (#{username}, #{email}, <include refid="timestampedValues"/>)
     </insert>
 
 <!--    <select id="existsAllByEmail" parameterType="String" resultType="boolean">-->
