@@ -17,9 +17,10 @@ public class UserRequestDto {
     }
 
     public static User toEntity(final UserRequestDto requestDto) {
-        return User.builder()
-                .username(requestDto.getUsername())
-                .email(requestDto.getEmail())
-                .build();
+//        return User.builder()
+//                .username(requestDto.getUsername())
+//                .email(requestDto.getEmail())
+//                .build();
+        return new User(requestDto.getUsername(), requestDto.getEmail());
     }
 }

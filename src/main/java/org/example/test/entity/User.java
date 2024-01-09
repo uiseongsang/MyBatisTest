@@ -5,22 +5,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.test.common.Timestamped;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class User extends Timestamped {
+public class User {
     //컬럼 - 연관관계 컬럼을 제외한 컬럼을 정의합니다.
     private Long user_id;
     private String username;
     private String email;
+    private LocalDateTime createdAt;
 
     // 생성자 - 약속된 형태로만 생성가능하도록 합니다.
     @Builder
     public User(String username, String email) {
         this.username = username;
         this.email = email;
+        this.createdAt = LocalDateTime.now();
     }
 
     // 연관관계

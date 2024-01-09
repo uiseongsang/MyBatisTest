@@ -20,6 +20,8 @@ class UserRepositoryTest2 {
                                 .username("Thomas")
                                         .build();
 
+        //assertEquals(user.getCreatedAt(), "2023-12-24");
+
         userRepository.getUserMapper().insertUser(user);
     }
 
