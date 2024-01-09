@@ -18,6 +18,6 @@ public class BoardResponseDto {
         this.board_id = board.getBoard_id();
         this.title = board.getTitle();
         this.content = board.getContent();
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = board.getCreatedAt();
     }
 }

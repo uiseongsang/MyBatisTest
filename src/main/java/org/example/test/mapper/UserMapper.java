@@ -11,5 +11,5 @@ public interface UserMapper {
     List<User> findAllByOrderByCreatedAtDesc();
 //    Boolean existsAllByEmail(String email);
     void insertUser(User user);
-    User findById(Long id);
+    List<Board> findBoardsByUserId(Long id);
 }

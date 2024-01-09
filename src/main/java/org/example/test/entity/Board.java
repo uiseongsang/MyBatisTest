@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Getter
 @NoArgsConstructor
@@ -16,14 +17,16 @@ public class Board {
     private String title;
     private String content;
     private LocalDateTime createdAt;
+    private Long user_id;
 
     /**
      * 생성자 - 약속된 형태로만 생성가능하도록 합니다.
      */
     @Builder
-    public Board(String title, String content) {
+    public Board(String title, String content, Long user_id) {
         this.title = title;
         this.content = content;
+        this.user_id = user_id;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -39,12 +42,10 @@ public class Board {
     // 다쪽에서 편의 메소드가 있어야 한다
     public void addBoardList(User user) {
         this.user = user;
-        //this.user.getBoardList().add(board);
         user.getBoardList().add(this);
     }
 
     /**
      * 서비스 메소드 - 외부에서 엔티티를 수정할 메소드를 정의합니다. (단일 책임을 가지도록 주의합니다.)
      */
-
 }

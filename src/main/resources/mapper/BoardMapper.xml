@@ -3,8 +3,8 @@
 
 <mapper namespace="org.example.test.mapper.BoardMapper">
     <insert id="insertBoard" parameterType="org.example.test.entity.Board">
-        INSERT INTO board(title, content, <include refid="timestampedColumns"/>)
-        VALUES (#{title}, #{content}, <include refid="timestampedValues"/>)
+        INSERT INTO board(title, content, user_id, <include refid="timestampedColumns"/>)
+        VALUES (#{title}, #{content}, #{user_id}, <include refid="timestampedValues"/>)
     </insert>
 
     <sql id="timestampedColumns">

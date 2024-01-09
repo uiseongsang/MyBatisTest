@@ -30,14 +30,14 @@ public class UserController {
         return userService.selectUsers();
     }
 
-    @PostMapping("board/userId/{userId}")
-    public ResponseEntity addUserBoard(@RequestBody BoardRequestDto requestDto, @PathVariable Long userId) {
-        BoardResponseDto res = userService.addUserBoard(requestDto,userId);
+    @PostMapping("board")
+    public ResponseEntity addUserBoard(@RequestBody BoardRequestDto requestDto) {
+        BoardResponseDto res = userService.addUserBoard(requestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
-//    @GetMapping("board/userId/{userId}")
+//    @GetMapping("boards/userId/{userId}")
 //    public BoardListResponseDto selectUserBoards(@PathVariable Long userId) {
 //        return userService.selectUserBoards(userId);
 //    }

@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.test.dto.*;
 import org.example.test.entity.Board;
 import org.example.test.entity.User;
-import org.example.test.mapper.BoardMapper;
 import org.example.test.repository.BoardRepository;
 import org.example.test.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -20,14 +19,6 @@ import java.util.stream.Collectors;
 public class UserService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
-
-    public UserListResponseDto selectUsers() {
-        List<UserResponseDto> userList = userRepository.getUserMapper().findAllByOrderByCreatedAtDesc().stream()
-                .map(UserResponseDto::new)
-                .collect(Collectors.toList());
-
-        return new UserListResponseDto(userList);
-    }
 
     @Transactional
     public UserResponseDto addUser(UserRequestDto requestDto) {
@@ -44,47 +35,35 @@ public class UserService {
         return new UserResponseDto(user);
     }
 
+    public UserListResponseDto selectUsers() {
+        List<UserResponseDto> userList = userRepository.getUserMapper().findAllByOrderByCreatedAtDesc().stream()
+                .map(UserResponseDto::new)
+                .collect(Collectors.toList());
+
+        return new UserListResponseDto(userList);
+    }
+
 
     // TODO: Test Code
-    @Transactional
-    public BoardResponseDto addUserBoard(BoardRequestDto requestDto, Long userId) {
-        User user = userRepository.getUserMapper().findById(userId);
+//    @Transactional
+//    public BoardListResponseDto selectUserBoards(Long userId) {
+//        List<BoardResponseDto> boardResponseDtoList = userRepository.getUserMapper().findBoardsByUserId(userId).stream()
+//                .map(BoardResponseDto::new)
+//                .collect(Collectors.toList());
+//
+//        return new BoardListResponseDto(boardResponseDtoList);
+//    }
+
+
+    public BoardResponseDto addUserBoard(BoardRequestDto requestDto) {
         Board board = BoardRequestDto.toEntity(requestDto);
 
+        // insert
         boardRepository.getBoardMapper().insertBoard(board);
-        board.addBoardList(user);
 
         return new BoardResponseDto(board);
     }
 }
 
 
-
-
-
-
-//
-//    // TODO: Test Code
-//    @Transactional
-//    public BoardListResponseDto selectUserBoards(Long userId) {
-//        User findUser = findUser(userId);
-//        //log.info("User found with id: {}, username: {}", findUser.getUser_id(), findUser.getUsername());
-//
-//        List<Board> userBoards = findUser.getBoardList();
-//        //log.info("Number of boards for user {}: {}", findUser.getUser_id(), userBoards.size());
-//
-//        List<BoardResponseDto> boardResponseDtoList = userBoards.stream()
-//                .map(BoardResponseDto::new)
-//                .collect(Collectors.toList());
-//        //log.info("Converted boardResponseDtoList for user {}: {}", findUser.getUser_id(), boardResponseDtoList);
-//
-//        return new BoardListResponseDto(boardResponseDtoList);
-//    }
-//
-//    // Common Method
-//    public User findUser(Long id) {
-//        User user = userRepository.findById(id).orElseThrow();
-//
-//        return user;
-//    }
 

@@ -108,7 +108,7 @@
     //$(document).on("click", "#infoBtn", function (event) {
     function reply_click(userId) {
         $.ajax({
-            url: `/board/userId/${userId}`,
+            url: `/boards/userId/${userId}`,
             type: 'GET',
             contentType: 'application/json',
             success: function (response) {
