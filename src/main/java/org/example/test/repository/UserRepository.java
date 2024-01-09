@@ -1,12 +1,15 @@
 package org.example.test.repository;
 
-import org.example.test.entity.Board;
-import org.example.test.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.Getter;
+import org.example.test.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@Repository
+@Getter
+public class UserRepository {
 
-public interface UserRepository extends JpaRepository<User,Long> {
-    Boolean existsAllByEmail(String email);
-    List<User> findAllByOrderByCreatedAtDesc();
+    @Autowired
+    private UserMapper userMapper;
+
 }
