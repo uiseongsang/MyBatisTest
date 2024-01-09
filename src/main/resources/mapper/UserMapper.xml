@@ -2,29 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.test.mapper.UserMapper">
-<!--    <resultMap id="BaseResultMap" type="org.example.test.entity.User">-->
-<!--        &lt;!&ndash; 각 컬럼에 맞게 매핑 설정 &ndash;&gt;-->
-<!--        <id column="id" property="id" jdbcType="INTEGER" javaType="Long"/>-->
-<!--        <result column="username" property="username" jdbcType="VARCHAR" javaType="String"/>-->
-<!--        <result column="email" property="email" jdbcType="VARCHAR" javaType="String"/>-->
-<!--&lt;!&ndash;        <result column="created_at" property="createdAt"/>&ndash;&gt;-->
-<!--        &lt;!&ndash; ... 다른 필드들에 대한 매핑 ... &ndash;&gt;-->
-<!--    </resultMap>-->
+    <resultMap id="UserResultMap" type="org.example.test.entity.User">
+        <!-- 각 컬럼에 맞게 매핑 설정 -->
+        <id column="id" property="id" jdbcType="INTEGER" javaType="Long"/>
+        <result column="username" property="username" jdbcType="VARCHAR" javaType="String"/>
+        <result column="email" property="email" jdbcType="VARCHAR" javaType="String"/>
+        <result column="createdAt" property="createdAt" jdbcType="TIMESTAMP"/>
+        <!-- ... 다른 필드들에 대한 매핑 ... -->
+    </resultMap>
 
-<!--    <select id="findAllByOrderByCreatedAtDesc" resultType="BaseResultMap">-->
-<!--        <![CDATA[-->
-<!--                    SELECT * FROM member OrderBy DESC-->
-<!--        ]]>-->
-<!--    </select>-->
+    <select id="findAllByOrderByCreatedAtDesc" resultType="org.example.test.entity.User">
+        SELECT * FROM member Order By createdAt DESC
+    </select>
 
     <insert id="insertUser" parameterType="org.example.test.entity.User">
-            INSERT INTO member (username, email, <include refid="timestampedColumns"/>)
-            VALUES (#{username}, #{email}, <include refid="timestampedValues"/>)
+        INSERT INTO member (username, email, <include refid="timestampedColumns"/>)
+        VALUES (#{username}, #{email}, <include refid="timestampedValues"/>)
     </insert>
 
-<!--    <select id="existsAllByEmail" parameterType="String" resultType="boolean">-->
-<!--        SELECT EXISTS(SELECT 1 FROM user WHERE email = #{email})-->
-<!--    </select>-->
+    <!-- ... 나머지 코드 ... -->
 
     <sql id="timestampedColumns">
         createdAt
@@ -36,3 +32,4 @@
         <!-- , #{modifiedAt, jdbcType=TIMESTAMP} -->
     </sql>
 </mapper>
+

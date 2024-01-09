@@ -15,9 +15,10 @@ public class BoardRequestDto {
     }
 
     public static Board toEntity(final BoardRequestDto requestDto) {
-        return Board.builder()
-                .content(requestDto.getContent())
-                .title(requestDto.getTitle())
-                .build();
+//        return Board.builder()
+//                .content(requestDto.getContent())
+//                .title(requestDto.getTitle())
+//                .build();
+        return new Board(requestDto.getTitle(), requestDto.getContent());
     }
 }

@@ -3,11 +3,10 @@ package org.example.test.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.test.common.Timestamped;
 
 @Getter
 @NoArgsConstructor
-public class Board extends Timestamped {
+public class Board {
     /**
      * 컬럼 - 연관관계 컬럼을 제외한 컬럼을 정의합니다.
      */

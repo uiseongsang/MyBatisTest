@@ -26,10 +26,10 @@ public class UserController {
             }
     }
 
-//    @GetMapping("users")
-//    public UserListResponseDto selectUsers(){
-//        return userService.selectUsers();
-//    }
+    @GetMapping("users")
+    public UserListResponseDto selectUsers(){
+        return userService.selectUsers();
+    }
 
 //    @PostMapping("board/userId/{userId}")
 //    public ResponseEntity addUserBoard(@RequestBody BoardRequestDto requestDto, @PathVariable Long userId) {

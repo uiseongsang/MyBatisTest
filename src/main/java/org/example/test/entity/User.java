@@ -3,7 +3,6 @@ package org.example.test.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.test.common.Timestamped;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
 
-//    public UserListResponseDto selectUsers() {
-//        List<UserResponseDto> userList = userRepository.getUserMapper().findAllByOrderByCreatedAtDesc().stream()
-//                .map(UserResponseDto::new)
-//                .collect(Collectors.toList());
-//
-//        return new UserListResponseDto(userList);
-//    }
+    public UserListResponseDto selectUsers() {
+        List<UserResponseDto> userList = userRepository.getUserMapper().findAllByOrderByCreatedAtDesc().stream()
+                .map(UserResponseDto::new)
+                .collect(Collectors.toList());
+
+        return new UserListResponseDto(userList);
+    }
 
     @Transactional
     public UserResponseDto addUser(UserRequestDto requestDto) {

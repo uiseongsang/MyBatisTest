@@ -11,14 +11,13 @@ public class BoardResponseDto {
     private Long board_id;
     private String title;
     private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private  LocalDateTime createdAt;
 
     @Builder
     public BoardResponseDto(Board board) {
         this.board_id = board.getBoard_id();
         this.title = board.getTitle();
         this.content = board.getContent();
-        this.createdAt = board.getCreatedAt();
+        this.createdAt = LocalDateTime.now();
     }
 }
